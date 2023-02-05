@@ -1,0 +1,77 @@
+﻿@model ProductManagement_Model.Models.Product
+@{
+    ViewData["Title"] = "Create";
+}
+<head>
+    <script>
+        $(function () {
+             $('#datetimepicker').datetimepicker({ minDate: new Date() });
+        });
+    </script>
+</head>
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SKU" class="control-label"></label>
+                <input asp-for="SKU" class="form-control" required />
+                <span asp-validation-for="SKU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BasePrice" class="control-label"></label>
+                <input asp-for="BasePrice" class="form-control" required />
+                <span asp-validation-for="BasePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MRP" class="control-label"></label>
+                <input asp-for="MRP" class="form-control" required />
+                <span asp-validation-for="MRP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <select asp-for="Category.Category_Id" asp-items="@(new SelectList(ViewBag.Category,"Category_Id","Name"))" class="dropdown">
+                    @*<option selected="selected" value="">Please select category</option>*@
+                </select>
+                <span asp-validation-for="Currency" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Currency" class="control-label"></label>
+                <select asp-for="Currency" asp-items="Html.GetEnumSelectList<ProductManagement_Model.Models.Currency>()" class="dropdown">
+                    <option selected="selected" value="">Please select currency</option>
+                </select>
+                <span asp-validation-for="Currency" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ExpiryDate" class="control-label"></label>
+                <input asp-for="ExpiryDate" id="datetimepicker" class="form-control" required  />
+                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

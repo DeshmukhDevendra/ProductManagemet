@@ -1,0 +1,46 @@
+﻿@model List<ProductManagement_Model.Models.Product>
+@{
+}
+
+<p>
+    <a asp-controller="Product" asp-action="Create" class="btn btn-outline-success">Add Product</a>
+</p>
+
+<h1>Available Products</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th hidden>ID</th>
+            <th>Name</th>
+            <th>SKU</th>
+            <th>Category</th>
+            <th>Base Price</th>
+            <th>MRP</th>
+            <th>Description</th>
+            <th>Currency</th>
+            <th>Date Manufactured</th>
+            <th>Expiry Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model) { 
+            <tr>
+                <td hidden>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.SKU</td>
+                <td>@product.Category.Name</td>
+                <td>@product.BasePrice</td>
+                <td>@product.MRP</td>
+                <td>@product.Description</td>
+                <td>@product.Currency</td>
+                <td>@product.DateManufactured</td>
+                <td>@product.ExpiryDate</td>
+                <td>@Html.ActionLink("Edit", "Create", new { id=product.Id, product.Name, product.SKU, product.Category.Category_Id, product.BasePrice, product.MRP, product.Description,product.Currency,product.ExpiryDate }, new { @class= "btn btn-outline-primary" })</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { product.Id }, new { @class= "btn btn-outline-danger", onclick="return confirm('Do you want to delete?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
